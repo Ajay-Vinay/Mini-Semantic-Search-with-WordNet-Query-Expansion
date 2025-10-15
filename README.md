@@ -1,16 +1,14 @@
 
 # Mini Semantic Search with WordNet Query Expansion — **Enhanced**
 
-A compact, Colab‑ready **Information Retrieval** project for Text Mining courses.  
-You’ll build a **semantic search** engine on a subset of **20 Newsgroups**, compare **TF‑IDF** vs **BM25**, and improve queries with **WordNet synonym expansion** and optional **bigram expansion**. The notebook also includes a **query analyzer**, clear **metrics (Precision@5, MRR)**, and demo searches with term highlighting.
+Builds a **semantic search** engine on a subset of **20 Newsgroups**, compare **TF‑IDF** vs **BM25**, and improve queries with **WordNet synonym expansion** and optional **bigram expansion**. The notebook also includes a **query analyzer**, clear **metrics (Precision@5, MRR)**, and demo searches with term highlighting.
 
 > Notebook: `TextMining_SemanticSearch_WordNet_v4.ipynb`  
 > Requirements: `requirements_textmining.txt`
 
 ---
 
-## 1) What you will deliver
-- A single Colab notebook that:
+## 1) Project Contents
   - Indexes ~5 categories from 20 Newsgroups
   - Runs **TF‑IDF** and **BM25** retrieval
   - Adds **WordNet** synonym expansion (toggle: nouns‑only or all POS)
@@ -18,43 +16,6 @@ You’ll build a **semantic search** engine on a subset of **20 Newsgroups**, co
   - Evaluates Baseline vs Expanded (**Precision@5**, **MRR**) and plots bar charts
   - Prints demo results with **highlighted matched terms**
 - A short, readable **README** (this file) explaining method, results, and how to run
-
-Good for a quick, unique project that’s easy to explain in viva.
-
----
-
-## 2) Quick Start (Google Colab)
-1. Upload to a repo (or your Drive) and open **`TextMining_SemanticSearch_WordNet_v4.ipynb`** in Colab.  
-2. At the top, **uncomment the `pip install` cell** if Colab doesn’t have `rank-bm25` already:
-   ```python
-   # !pip -q install scikit-learn nltk pandas numpy matplotlib rank-bm25
-   ```
-3. **Run all cells** top‑to‑bottom. The notebook downloads the dataset automatically.  
-4. Scroll to the **metrics section** to view bar charts for **Precision@5** and **MRR**.  
-5. Try the **“Query Analyzer & Demo”** cell to see tokens kept, synonyms/bigrams added, and highlighted results.
-
-> Tip: If NLTK WordNet isn’t found, the notebook already runs `nltk.download('wordnet')`. Re‑run the first import cell if needed.
-
----
-
-## 3) Run Locally (optional)
-```bash
-python -m venv .venv
-source .venv/bin/activate   # Windows: .venv\\Scripts\\activate
-pip install -r requirements_textmining.txt
-# Start Jupyter (or VS Code) and open TextMining_SemanticSearch_WordNet_v4.ipynb
-```
-
-`requirements_textmining.txt` (minimal):
-```
-scikit-learn
-nltk
-pandas
-numpy
-matplotlib
-rank-bm25
-scipy
-```
 
 ---
 
@@ -153,14 +114,14 @@ Use the **Query Analyzer & Demo** cell:
 
 ---
 
-## 11) Troubleshooting
+## 9) Troubleshooting
 - **`ImportError: rank_bm25`** → run `pip install rank-bm25` (uncomment in the first cell).  
 - **NLTK WordNet not found** → the notebook calls `nltk.download('wordnet')`. If still missing, re‑run the first cell.  
 - **Slow/Memory issues** → keep 5 categories; 20 Newsgroups is small but doubling categories adds cost.  
 
 ---
 
-## 14) Appendix: Key Formulas (informal)
+## 10) Appendix: Key Formulas (informal)
 - **TF‑IDF cosine**: Rank by cosine similarity between TF‑IDF vectors of query & document.  
 - **BM25**: Scores documents using term frequency saturation + IDF weighting; the widely used IR baseline for lexical search.
 
