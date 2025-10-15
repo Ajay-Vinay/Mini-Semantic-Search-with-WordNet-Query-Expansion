@@ -1,5 +1,5 @@
 
-# Mini Semantic Search with WordNet Query Expansion — **Enhanced**
+# Mini Semantic Search with WordNet Query Expansion 
 
 Builds a **semantic search** engine on a subset of **20 Newsgroups**, compare **TF‑IDF** vs **BM25**, and improve queries with **WordNet synonym expansion** and optional **bigram expansion**. The notebook also includes a **query analyzer**, clear **metrics (Precision@5, MRR)**, and demo searches with term highlighting.
 
@@ -21,9 +21,9 @@ Builds a **semantic search** engine on a subset of **20 Newsgroups**, compare **
 ## 2) Project Structure
 ```
 .
-├─ TextMining_SemanticSearch_WordNet_v4.ipynb   # main notebook (enhanced)
-├─ requirements_textmining.txt
-└─ README_TextMining.md                         # (optional) short readme; this file can replace it
+├─ TextMining_SemanticSearch_WordNet.ipynb   
+├─ requirements.txt
+└─ README.md                         
 ```
 
 ---
@@ -37,7 +37,7 @@ Builds a **semantic search** engine on a subset of **20 Newsgroups**, compare **
 - `sci.med`
 
 Preprocessing choices:
-- We remove headers/footers/quotes (to avoid “category leaks”).
+- Removes headers/footers/quotes (to avoid “category leaks”).
 - **TF‑IDF** uses **unigram + bigram** features with English stop‑words, `min_df=2`, `max_df=0.9`.
 - **BM25** uses a simple **regex unigram tokenizer** (same notebook function for both index and queries).
 
