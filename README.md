@@ -8,18 +8,17 @@ Builds a **semantic search** engine on a subset of **20 Newsgroups**, compare **
 
 ---
 
-## 1) Project Contents
+## 1) Project Working
   - Indexes ~5 categories from 20 Newsgroups
   - Runs **TF‑IDF** and **BM25** retrieval
   - Adds **WordNet** synonym expansion (toggle: nouns‑only or all POS)
   - Optionally adds **bigram expansion** for query phrases found in the corpus vocab
   - Evaluates Baseline vs Expanded (**Precision@5**, **MRR**) and plots bar charts
   - Prints demo results with **highlighted matched terms**
-- A short, readable **README** (this file) explaining method, results, and how to run
 
 ---
 
-## 4) Project Structure
+## 2) Project Structure
 ```
 .
 ├─ TextMining_SemanticSearch_WordNet_v4.ipynb   # main notebook (enhanced)
@@ -29,7 +28,7 @@ Builds a **semantic search** engine on a subset of **20 Newsgroups**, compare **
 
 ---
 
-## 5) Dataset
+## 3) Dataset
 **20 Newsgroups (train subset)** — five categories for speed and clarity:
 - `sci.space`
 - `comp.windows.x`
@@ -44,13 +43,13 @@ Preprocessing choices:
 
 ---
 
-## 6) Method Overview
+## 4) Method Overview
 
-### 6.1 Baselines
+### 4.1 Baselines
 - **TF‑IDF cosine ranking**: `TfidfVectorizer(ngram_range=(1,2), stop_words='english', min_df=2, max_df=0.9)` → cosine similarity via `linear_kernel`.
 - **BM25Okapi** (from `rank-bm25`) on tokenized unigrams.
 
-### 6.2 Query Expansion
+### 4.2 Query Expansion
 - **WordNet synonyms** (default: **nouns‑only**). For each non‑stopword query token:
   - Get up to 3 synonyms from WordNet.
   - Keep **single‑token synonyms** that **exist** in the TF‑IDF vocabulary (prevents “dead” terms).
@@ -58,11 +57,11 @@ Preprocessing choices:
 - **Bigram expansion (optional)**:
   - If adjacent query tokens form a **bigram present in the corpus vocab**, include the bigram as a phrase feature (helps TF‑IDF).
 
-### 6.3 Ranking with Expansion
+### 4.3 Ranking with Expansion
 - **TF‑IDF (Expanded)**: Build an **expanded string** = `kept_tokens + synonyms + bigrams`, then rank with TF‑IDF.
 - **BM25 (Expanded)**: Use **unigram** tokens only (`kept_tokens + synonyms`); bigrams are ignored for BM25 in this simple setup.
 
-### 6.4 Evaluation
+### 4.4 Evaluation
 - **Queries**: A tiny set (10) mapped to expected categories (e.g., “space shuttle orbit” → `sci.space`).  
 - **Metrics**: Macro‑averaged **Precision@5 (P@5)** and **Mean Reciprocal Rank (MRR)**.  
 - **Comparisons**:
@@ -71,7 +70,7 @@ Preprocessing choices:
 
 ---
 
-## 7) How to Use / Modify
+## 5) How to Use / Modify
 
 ### Toggle POS for expansion
 In the config cell:
@@ -108,20 +107,20 @@ Use the **Query Analyzer & Demo** cell:
 
 ---
 
-## 8) Results & What to Expect
+## 6) Results & What to Expect
 - On this subset, **expansion usually increases P@5 and MRR**, especially for TF‑IDF (because synonyms and bigrams align with the vocabulary).
 - **BM25** is already strong; unigram synonym expansion often helps but may be smaller gains than TF‑IDF with bigrams.
 
 ---
 
-## 9) Troubleshooting
+## 7) Troubleshooting
 - **`ImportError: rank_bm25`** → run `pip install rank-bm25` (uncomment in the first cell).  
 - **NLTK WordNet not found** → the notebook calls `nltk.download('wordnet')`. If still missing, re‑run the first cell.  
 - **Slow/Memory issues** → keep 5 categories; 20 Newsgroups is small but doubling categories adds cost.  
 
 ---
 
-## 10) Appendix: Key Formulas (informal)
+## 8) Appendix: Key Formulas (informal)
 - **TF‑IDF cosine**: Rank by cosine similarity between TF‑IDF vectors of query & document.  
 - **BM25**: Scores documents using term frequency saturation + IDF weighting; the widely used IR baseline for lexical search.
 
